@@ -1,0 +1,39 @@
+body {
+  background-image: url('img/forest-bg.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.bubbles {
+  font-family: 'Fuzzy Bubbles', cursive;
+}
+
+.kiwi-bird {
+  max-height: 60vh;
+  transform: translateY(20px);
+  cursor: pointer;
+}
+
+.kiwi-fruit {
+  max-height: 4vh;
+}
+
+.stat-card {
+  background-color: #346c5ed6;
+  min-height: 25vh;
+  transform: translateY(-25px);
+}
+
+.inner-card {
+  background-color: #346c5efc;
+  min-height: 8vh;
+}
+
+.count-card {
+  background-color: #346c5efc;
+  min-height: 5vh;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 2px rgb(42, 42, 42);
+}

@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=family=Fuzzy+Bubbles:wght@400;700&family=Poppins&display=swap"
     rel="stylesheet">
+  <link rel="icon" href="./img/kiwi-bird-sitting-on-kiwis.png" />
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,52 +26,54 @@
 
     <div class="row justify-content-center">
       <div class="col-6 text-center">
-        <img onclick="harvestKiwi()" src="img/kiwi-giphy.gif" class="kiwi-bird mt-5 pt-5"></img>
+        <img onclick="harvestKiwi()" src="img/kiwi-giphy.gif" class="kiwi-bird mt-5 pt-5 hvr-grow"></img>
       </div>
     </div>
 
     <div class="row">
       <div class="col-12">
-        <div class="stat-card rounded">
+        <div class="stat-card rounded pb-2">
           <div class="row justify-content-evenly text-center text-white text-shadow bubbles">
             <div class="col-3">
               <div class="row">
                 <h2>Click Upgrades</h2>
               </div>
               <div class="row">
-                <div class="col-6">
-                  <div class="inner-card rounded my-1">
+                <div class="col-6" id="shear">
+                  <button onclick="buyShear()" id="shear-button"
+                    class="btn btn-outline-white inner-card rounded my-1 text-white hvr-grow" disabled>
                     <h2><span id="shear-price">20 </span> <img src="img/kiwi-icon.png" class="kiwi-fruit"></img></h2>
-                  </div>
+                  </button>
                 </div>
                 <div class="col-6">
-                  <button onclick="buyShear()" class="inner-card rounded my-1 btn btn-white text-white">
+                  <div class="inner-card rounded my-1 text-white">
                     <div class="row">
                       <p class="mb-0">Shears</p>
                     </div>
                     <div class="row">
-                      <p class="mb-0">+ 2 <img src="img/kiwi-icon.png" class="kiwi-fruit"></img> per <i
+                      <p class="mb-2">+ 2 <img src="img/kiwi-icon.png" class="kiwi-fruit"></img> per <i
                           class="mdi mdi-cursor-pointer"></i></p>
                     </div>
-                  </button>
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6">
-                  <div class="inner-card rounded my-1">
+                  <button onclick="buyBasket()" id="basket-button"
+                    class="btn btn-white inner-card rounded my-1 text-white hvr-grow" disabled>
                     <h2><span id="basket-price">50 </span> <img src="img/kiwi-icon.png" class="kiwi-fruit"></img></h2>
-                  </div>
+                  </button>
                 </div>
                 <div class="col-6">
-                  <button onclick="buyBasket()" class="inner-card rounded my-1 btn btn-white text-white">
+                  <div class="inner-card rounded my-1 text-white">
                     <div class="row">
                       <p class="mb-0">Baskets</p>
                     </div>
                     <div class="row">
-                      <p class="mb-0">+ 5 <img src="img/kiwi-icon.png" class="kiwi-fruit"></img> per <i
+                      <p class="mb-2">+ 5 <img src="img/kiwi-icon.png" class="kiwi-fruit"></img> per <i
                           class="mdi mdi-cursor-pointer"></i></p>
                     </div>
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -81,37 +84,39 @@
               </div>
               <div class="row">
                 <div class="col-6">
-                  <div class="inner-card rounded my-1">
+                  <button onclick="buyBee()" id="honey-bee-button"
+                    class="btn btn-white inner-card rounded my-1 text-white hvr-grow" disabled>
                     <h2><span id="bee-price">100 </span> <img src="img/kiwi-icon.png" class="kiwi-fruit"></img></h2>
-                  </div>
+                  </button>
                 </div>
                 <div class="col-6">
-                  <button onclick="buyBee()" class="inner-card rounded my-1 btn btn-white text-white">
+                  <div class="inner-card rounded my-1 text-white">
                     <div class="row">
                       <p class="mb-0">Honey Bees</p>
                     </div>
                     <div class="row">
-                      <p class="mb-0">+ 10 <img src="img/kiwi-icon.png" class="kiwi-fruit"></img> per/3s</i></p>
+                      <p class="mb-2">+ 10 <img src="img/kiwi-icon.png" class="kiwi-fruit"></img> per/3s</i></p>
                     </div>
-                  </button>
+                  </div>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-6">
-                  <div class="inner-card rounded my-1">
+                  <button onclick="buySheep()" id="sheep-button"
+                    class="btn btn-white inner-card rounded my-1 text-white hvr-grow" disabled>
                     <h2><span id="sheep-price">300 </span> <img src="img/kiwi-icon.png" class="kiwi-fruit"></img></h2>
-                  </div>
+                  </button>
                 </div>
                 <div class="col-6">
-                  <button onclick="buySheep()" class="inner-card rounded my-1 btn btn-white text-white">
+                  <div class="inner-card rounded my-1 text-white">
                     <div class="row">
                       <p class="mb-0">Sheep</p>
                     </div>
                     <div class="row">
-                      <p class="mb-0">+ 20 <img src="img/kiwi-icon.png" class="kiwi-fruit"></img> per/3s</i></p>
+                      <p class="mb-2">+ 20 <img src="img/kiwi-icon.png" class="kiwi-fruit"></img> per/3s</i></p>
                     </div>
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -123,14 +128,17 @@
               <div class="row">
                 <div class="col-12">
                   <div class="count-card rounded my-1">
-                    <h5>Total <img src="img/kiwi-icon.png" class="kiwi-fruit"> <span id="total-kiwis"> 0</span></h5>
+                    <h5 class="py-1">Total <img src="img/kiwi-icon.png" class="kiwi-fruit"> <span
+                        id="total-kiwis"></span>
+                      </span></h5>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
                   <div class="count-card rounded my-1">
-                    <h5>+ <span id="click-power"> 1 </span> <img src="img/kiwi-icon.png" class="kiwi-fruit"> </img> per
+                    <h5 class="py-1">+ <span id="click-power"> 1 </span> <img src="img/kiwi-icon.png"
+                        class="kiwi-fruit"> </img> per
                       <span class="mdi mdi-cursor-pointer"></span>
                     </h5>
                   </div>
@@ -139,13 +147,13 @@
               <div class="row">
                 <div class="col-12">
                   <div class="count-card rounded my-1">
-                    <h5>+ <span id="auto-power"> 0 </span> <img src="img/kiwi-icon.png" class="kiwi-fruit"> </img> per
+                    <h5 class="py-1">+ <span id="auto-power"> 0 </span> <img src="img/kiwi-icon.png" class="kiwi-fruit">
+                      </img> per
                       3/s</span></h5>
                   </div>
                 </div>
               </div>
             </div>
-
 
             <div class="col-2">
               <div class="row">
@@ -154,14 +162,14 @@
               <div class="row">
                 <div class="col-12">
                   <div class="inner-card rounded my-1">
-                    <h5><span id="shear-quantity">0</span> Shears</h5>
+                    <h5 class="d-flex flex-column align-items-center"><span id="shear-quantity">0</span> Shears</h5>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
                   <div class="inner-card rounded my-1">
-                    <h5><span id="basket-quantity">0</span> Baskets</h5>
+                    <h5 class="d-flex flex-column align-items-center"><span id="basket-quantity">0</span> Baskets</h5>
                   </div>
                 </div>
               </div>
@@ -174,14 +182,14 @@
               <div class="row">
                 <div class="col-12">
                   <div class="inner-card rounded my-1">
-                    <h5><span id="bee-quantity">0</span> Honey Bees</h5>
+                    <h5 class="d-flex flex-column align-items-center"><span id="bee-quantity">0</span> Honey Bees</h5>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
                   <div class="inner-card rounded my-1">
-                    <h5><span id="sheep-quantity">0</span> Sheep</h5>
+                    <h5 class="d-flex flex-column align-items-center"><span id="sheep-quantity">0</span> Sheep</h5>
                   </div>
                 </div>
               </div>
@@ -190,9 +198,7 @@
         </div>
       </div>
     </div>
-
   </div>
-
 
 
 

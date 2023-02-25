@@ -1,51 +1,65 @@
+// TODO refactor buy functions, make more mobile friendly
+//  display total kiwis collected over time
+// local storage to save game progress on reload
+
 // VARIABLES
 let kiwis = 0
 let clickPower = 1
 let autoPower = 0
 
 // UPGRADES
-let clickUpgrades = [
+let upgrades = [
   {
     name: 'shear',
     price: 20,
     quantity: 0,
-    multiplier: 2
+    multiplier: 2,
+    type: 'click'
   },
   {
     name: 'basket',
     price: 50,
     quantity: 0,
-    multiplier: 5
-  }
-];
-
-let autoUpgrades = [
+    multiplier: 5,
+    type: 'click'
+  },
   {
     name: 'honey-bee',
     price: 100,
     quantity: 0,
-    multiplier: 10
+    multiplier: 10,
+    type: 'auto'
   },
   {
     name: 'sheep',
     price: 300,
     quantity: 0,
-    multiplier: 20
+    multiplier: 20,
+    type: 'auto'
   }
-];
+]
 
 function harvestKiwi() {
-  // does button even work?
-  console.log('Harvesting kiwis')
+  // console.log('Harvesting kiwis')
   // increase kiwis when clicked
   kiwis++
-  // iterate through all of my click upgrades, if i have one, add that to total clickpower
-  clickUpgrades.forEach(c => {
-    if (c.quantity >= 1) {
-      kiwis += c.multiplier * c.quantity
+  // iterate through all upgrades, find those that are clicks, if i have one, add that to total clickpower
+  upgrades.forEach(u => {
+    if (u.type == 'click' && u.quantity >= 1) {
+      kiwis += u.multiplier * u.quantity
     }
   })
   // update total kiwis AND total upgrade powers
+  updateCount()
+}
+
+function collectAutoUpgrades() {
+  // iterate through all upgrades, find those w/type auto if I have 1, add that to total autoPower
+  upgrades.forEach(u => {
+    if (u.type == 'auto' && u.quantity >= 1) {
+      kiwis += u.multiplier * u.quantity
+    }
+  })
   updateCount()
 }
 
@@ -56,16 +70,28 @@ function updateCount() {
   document.getElementById('click-power').innerText = clickPower
   // @ts-ignore
   document.getElementById('auto-power').innerText = autoPower
+
+  upgrades.forEach(u => {
+    let btn = document.getElementById(`${u.name}-button`)
+    if (u.price <= kiwis) {
+      // console.log(btn)
+      // @ts-ignore
+      btn.disabled = false
+    } else {
+      // @ts-ignore
+      btn.disabled = true
+    }
+  })
 }
 
 function buyShear() {
   // does shear button work
   // console.log('buying shear')
   // find the shear upgrade in clickUpgrade array
-  let upgrade = clickUpgrades.find(upgrade => upgrade.name == 'shear')
+  let upgrade = upgrades.find(upgrade => upgrade.name == 'shear')
   // check if user has enough kiwis
   if (kiwis >= upgrade.price) {
-    // decrease kiwi quantity by price of shear
+    // decrease kiwi quantity by price of shear (this needs to be first thing or it messes up count!)
     kiwis -= upgrade.price
     // if they do, increase shear purchased quantity by 1, by grabbing that elem and resetting its value
     upgrade.quantity++
@@ -88,7 +114,7 @@ function buyShear() {
 
 function buyBasket() {
   // console.log('buying basket')
-  let upgrade = clickUpgrades.find(upgrade => upgrade.name == 'basket')
+  let upgrade = upgrades.find(upgrade => upgrade.name == 'basket')
   if (kiwis >= upgrade.price) {
     kiwis -= upgrade.price
     upgrade.quantity++
@@ -108,7 +134,7 @@ function buyBasket() {
 
 function buyBee() {
   console.log('buying bees')
-  let upgrade = autoUpgrades.find(upgrade => upgrade.name == 'honey-bee')
+  let upgrade = upgrades.find(upgrade => upgrade.name == 'honey-bee')
   if (kiwis >= upgrade.price) {
     kiwis -= upgrade.price
     upgrade.quantity++
@@ -129,7 +155,7 @@ function buyBee() {
 
 function buySheep() {
   console.log('buying sheep')
-  let upgrade = autoUpgrades.find(upgrade => upgrade.name == 'sheep')
+  let upgrade = upgrades.find(upgrade => upgrade.name == 'sheep')
   if (kiwis >= upgrade.price) {
     kiwis -= upgrade.price
     upgrade.quantity++
@@ -148,16 +174,5 @@ function buySheep() {
   collectAutoUpgrades()
 }
 
-
-// TODO why does it immediately give me the autoupgrade without waiting 3 sec?
-function collectAutoUpgrades() {
-  // iterate through all my auto upgrades, if I have 1, add that to total autoPower
-  autoUpgrades.forEach(a => {
-    if (a.quantity >= 1) {
-      kiwis += a.multiplier * a.quantity
-    }
-  })
-  updateCount()
-}
-
 setInterval(collectAutoUpgrades, 3000)
+updateCount()

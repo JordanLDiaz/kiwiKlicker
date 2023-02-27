@@ -2,6 +2,7 @@ body {
   background-image: url('img/forest-bg.jpg');
   background-position: center;
   background-size: cover;
+  overflow-y: hidden;
 }
 
 .bubbles {
